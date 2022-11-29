@@ -10,6 +10,13 @@ pipeline {
                 git url: 'https://github.com/DanilKlochkov/testSonarProject.git'
             }
         }
+        stage('build') {
+            steps {
+                withMaven {
+                    sh 'mvn clean install'
+                }
+            }
+        }
         stage('build && SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
