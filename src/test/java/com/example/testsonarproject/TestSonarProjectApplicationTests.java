@@ -8,6 +8,7 @@ class TestSonarProjectApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println(1+1);
     }
 
 }
