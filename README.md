@@ -1,3 +1,5 @@
 # Test Sonar Application
 
-[SonarQube Documentation](https://www.sonarqube.org/)
+
+This application create to demonstrate how to use SonarQube in Jenkins Pipelines.
+Documentation: [SonarQube Documentation](https://www.sonarqube.org/)
