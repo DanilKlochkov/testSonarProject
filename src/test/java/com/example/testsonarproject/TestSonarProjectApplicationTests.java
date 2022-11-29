@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 @SpringBootTest
-public class TestSonarProjectApplicationTests {
+class TestSonarProjectApplicationTests {
 
     @org.junit.Test
     public void plusTest() {
