@@ -8,27 +8,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestSomeClassTests {
     
     @Test
-    public void plusTest() {
+    void plusTest() {
         assertEquals(2, SomeClass.plus(1,1).intValue());
     }
 
     @Test
-    public void minusTest() {
+    void minusTest() {
         assertEquals(2, SomeClass.minus(3,1).intValue());
     }
 
     @Test
-    public void multiplyTest() {
+    void multiplyTest() {
         assertEquals(2, SomeClass.multiply(2,1).intValue());
     }
 
     @Test
-    public void divideTest() {
+    void divideTest() {
         assertEquals(2, SomeClass.divide(4,2).intValue());
     }
 
     @Test
-    public void divideTestWithError() {
+    void divideTestWithError() {
         assertThrows(ArithmeticException.class, () -> SomeClass.divide(1,0));
     }
 }
