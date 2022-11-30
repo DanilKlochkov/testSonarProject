@@ -1,14 +1,12 @@
 package com.example.testsonarproject;
 
 import com.example.testsonarproject.service.SomeClass;
-import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class TestSomeClassTests {
-
+    
     @Test
     public void plusTest() {
         assertEquals(2, SomeClass.plus(1,1).intValue());
@@ -29,8 +27,8 @@ public class TestSomeClassTests {
         assertEquals(2, SomeClass.divide(4,2).intValue());
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void divideTestWithError() {
-        assertNull(SomeClass.divide(1,0));
+        assertThrows(ArithmeticException.class, () -> SomeClass.divide(1,0));
     }
 }
