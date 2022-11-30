@@ -1,34 +1,35 @@
 package com.example.testsonarproject;
 
 import com.example.testsonarproject.service.SomeClass;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestSomeClassTests {
+public class TestSomeClassTests {
     
     @Test
-    void plusTest() {
+    public void plusTest() {
         assertEquals(2, SomeClass.plus(1,1).intValue());
     }
 
     @Test
-    void minusTest() {
+    public void minusTest() {
         assertEquals(2, SomeClass.minus(3,1).intValue());
     }
 
     @Test
-    void multiplyTest() {
+    public void multiplyTest() {
         assertEquals(2, SomeClass.multiply(2,1).intValue());
     }
 
     @Test
-    void divideTest() {
+    public void divideTest() {
         assertEquals(2, SomeClass.divide(4,2).intValue());
     }
 
     @Test
-    void divideTestWithError() {
+    public void divideTestWithError() {
         assertThrows(ArithmeticException.class, () -> SomeClass.divide(1,0));
     }
 }
