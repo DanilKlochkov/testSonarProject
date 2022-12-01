@@ -21,6 +21,7 @@ public class SomeController {
                 .ok(SomeClass.minus(x, y));
     }
 
+
     @GetMapping("/multiply")
     public ResponseEntity<?> multiply(@RequestParam("x") int x, @RequestParam("y") int y) {
         return ResponseEntity
