@@ -37,8 +37,8 @@ pipeline {
                 script {
                     commit = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
                     println result
-                    commitMsgPre = commit.split(" ")
-                    commitMsg = ""
+                    List commitMsgPre = commit.split(" ")
+                    String commitMsg = ""
 
                     for (int i = 1; i < commitMsgPre.size(); i++) {
                         commitMsg += commitMsgPre.getAt(i) + " "
