@@ -35,11 +35,14 @@ pipeline {
         stage('name check') {
             steps {
                 script {
-                    result = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
+                    commit = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
                     println result
-//                     if (result == 0) {
-//                         error "Not found Jira task number in git commit message."
-//                     }
+                    commitMsgPre = commit.split(" ")
+                    commitMsg = ""
+
+                    for (int i = 1; i < commitMsgPre.size(); i++) {
+                        commitMsg += commitMsgPre.getAt(i) + " "
+                    }
                 }
             }
         }
