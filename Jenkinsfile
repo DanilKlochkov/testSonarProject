@@ -35,10 +35,11 @@ pipeline {
         stage('name check') {
             steps {
                 script {
-                    result = sh (script: "git log -1 | grep '[0-9]+ .*'", returnStatus: true)
-                    if (result == 0) {
-                        error "Not found Jira task number in git commit message."
-                    }
+                    result = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
+                    println result
+//                     if (result == 0) {
+//                         error "Not found Jira task number in git commit message."
+//                     }
                 }
             }
         }
