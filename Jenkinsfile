@@ -30,6 +30,7 @@ pipeline {
 //             steps {
 //                 waitForQualityGate abortPipeline: true
 //             }
+
 //         }
         stage('name check') {
             steps {
