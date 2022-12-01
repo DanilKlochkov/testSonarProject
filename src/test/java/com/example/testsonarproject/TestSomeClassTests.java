@@ -1,7 +1,7 @@
 package com.example.testsonarproject;
 
 import com.example.testsonarproject.service.SomeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +30,6 @@ public class TestSomeClassTests {
 
     @Test
     public void divideTestWithError() {
-        assertThrows(ArithmeticException.class, () -> SomeClass.divide(1,0));
+        assertNull(ArithmeticException.class, () -> SomeClass.divide(1,0));
     }
 }
