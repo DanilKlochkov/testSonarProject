@@ -49,14 +49,19 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    def exists = fileExists 'repo.json'
+                    def url = "https://efp6.sm-soft.ru:8243/repo/restscanner/2.0/repo/info?branch=develop&defineDataFromExistingDraft=false&name=https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
+                    println("Get info from ${url}")
 
-                    println exists
+                    def res = sh(script: "curl -X GET --header 'Content-Type: *' --header 'Accept: */*' --header 'Authorization: d681223f-556d-31e5-9363-165654cf515f' '${url}' -k",
+                            returnStdout: true
+                    )
+                    println(res)
 
-                    if (!exists) {
-                        println 'Такого файла нет!'
-                    }
-
+//                     def exists = fileExists 'repo.json'
+//
+//                     if (!exists) {
+//                         println 'Такого файла нет!'
+//                     }
                 }
             }
         }
