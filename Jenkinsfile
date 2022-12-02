@@ -49,7 +49,7 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    def exists = fileExist 'repo.json'
+                    def exists = fileExists 'repo.json'
 
                     if (!exists) {
                         println 'Такого файла нет!'
