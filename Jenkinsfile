@@ -46,5 +46,12 @@ pipeline {
                 }
             }
         }
+        stage('repo scan') {
+            steps {
+                script {
+                    writeFile file: "./repo.json", text: "Hello"
+                }
+            }
+        }
     }
 }
