@@ -51,6 +51,8 @@ pipeline {
                 script {
                     def exists = fileExists 'repo.json'
 
+                    println exists
+
                     if (!exists) {
                         println 'Такого файла нет!'
                     }
