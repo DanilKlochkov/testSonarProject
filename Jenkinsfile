@@ -40,7 +40,7 @@ pipeline {
                     println commit
                     println commitMsg[1]
 
-                    if (!(commitMsg[1] ==~ /\d+/)) {
+                    if (!(commitMsg[1] ==~ /[A-Z]+-\d+/)) {
                         error "Commit message should start with Jira task number!"
                     }
                 }
