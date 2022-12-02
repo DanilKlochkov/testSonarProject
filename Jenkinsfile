@@ -35,13 +35,11 @@ pipeline {
         stage('name check') {
             steps {
                 script {
-                    commit = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
-                    println result
-                    List commitMsgPre = commit.split(" ")
-                    String commitMsg = ""
-
-                    for (int i = 1; i < commitMsgPre.size(); i++) {
-                        commitMsg += commitMsgPre.getAt(i) + " "
+                    String commit = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
+                    println commit
+                    println commit[1]
+                    if (!(commit[1] ==~ /\d+/)) {
+                        error "Commit message should start with Jira task number!"
                     }
                 }
             }
