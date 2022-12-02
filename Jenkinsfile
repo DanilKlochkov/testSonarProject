@@ -52,7 +52,7 @@ pipeline {
                     def url = "https://efp6.sm-soft.ru:8243/repo/restscanner/2.0/repo/info?branch=develop&defineDataFromExistingDraft=false&name=https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
                     println("Get info from ${url}")
 
-                    def res = sh(script: "curl -X GET --header 'Content-Type: *' --header 'Accept: */*' --header 'Authorization: d681223f-556d-31e5-9363-165654cf515f' '${url}' -k",
+                    def res = sh(script: "curl -X GET --header 'Content-Type: *' --header 'Accept: */*' --header 'Authorization: 840d2bd9-c0d9-3b92-914d-5a40d67760df' '${url}' -k",
                             returnStdout: true
                     )
                     println(res)
