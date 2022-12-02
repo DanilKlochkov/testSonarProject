@@ -49,7 +49,8 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    def requestBody = readFile(file: 'repo.json')
+                    env.WORKSPACE = pwd()
+                    def requestBody = readFile "${env.WORKSPACE}/repo.json"
                     def url = "http://etp-repo-scan-restscanner-etp.apps.okd4.sm-soft.ru/repo/validation?branch=develop&name=$https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
                     def res = sh(script: "curl -X POST --header 'Content-Type: *' --header 'Accept: */*' '${url}' -d ${requestBody}",
                                 returnStdout: true)
