@@ -5,33 +5,32 @@ pipeline {
         maven 'mvn'
     }
     stages {
-//         stage('Get from GitHub') {
-//             steps {
-//                 git url: 'https://github.com/DanilKlochkov/testSonarProject.git'
-//             }
-//         }
-//         stage('build') {
-//             steps {
-//                 withMaven {
-//                     sh 'mvn clean test'
-//                 }
-//             }
-//         }
-//         stage('build && SonarQube analysis') {
-//             steps {
-//                 withSonarQubeEnv('sonarqube') {
-//                     withMaven {
-//                         sh 'mvn clean package sonar:sonar'
-//                     }
-//                 }
-//             }
-//         }
-//         stage('Quality gate') {
-//             steps {
-//                 waitForQualityGate abortPipeline: true
-//             }
-
-//         }
+        stage('Get from GitHub') {
+            steps {
+                git url: 'https://github.com/DanilKlochkov/testSonarProject.git'
+            }
+        }
+        stage('build') {
+            steps {
+                withMaven {
+                    sh 'mvn clean test'
+                }
+            }
+        }
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    withMaven {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
+        stage('Quality gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('name check') {
             steps {
                 script {
@@ -49,7 +48,6 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    import groovy.lang.Binding
                     env.WORKSPACE = pwd()
                     def requestBody = readFile("${env.WORKSPACE}/repo.json")
                     def url = "http://etp-repo-scan-restscanner-etp.apps.okd4.sm-soft.ru/repo/validation?branch=develop&name=$https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
