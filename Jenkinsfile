@@ -49,7 +49,12 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    writeFile file: "./repo.json", text: "Hello"
+                    def exists = fileExist 'repo.json'
+
+                    if (!exists) {
+                        println 'Такого файла нет!'
+                    }
+
                 }
             }
         }
