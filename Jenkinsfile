@@ -37,6 +37,8 @@ pipeline {
                 script {
                     commit = sh(returnStdout: true, script: 'git log -1 --oneline').trim()
                     List commitMsg = commit.split(" ")
+                    println commit
+                    println commitMsg[0]
 
                     if (!(commitMsg[0] ==~ /\d+/)) {
                         error "Commit message should start with Jira task number!"
