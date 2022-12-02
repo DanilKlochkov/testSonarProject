@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "group": "intern",
+  "meta_types": [],
+  "fronts": [],
+  "backs": [],
+  "tags": [
+    "JDBC"
+  ],
+  "service_codes": [],
+  "components": [
+    {
+      "component_name": "ms.intern.delivery_service-db-delivery_bot",
+      "description": "Таблицы интеграционного процесса",
+      "artefact": "sql/delivery_bot",
+      "realization": "SQL_SCRIPT",
+      "meta_type": "DATA_STORAGE",
+      "extra_data": [
+        {
+          "action": [
+            "CREATE_TABLE"
+          ],
+          "entity": "public.food"
+        },
+        {
+          "action": [
+            "CREATE_TABLE",
+            "INSERT_INTO"
+          ],
+          "entity": "public.cafe"
+        },
+        {
+          "action": [
+            "CREATE_TABLE"
+          ],
+          "entity": "public.order"
+        },
+        {
+          "action": [
+            "CREATE_TABLE",
+            "INSERT_INTO"
+          ],
+          "entity": "public.category"
+        },
+        {
+          "action": [
+            "CREATE_TABLE"
+          ],
+          "entity": "public.basket"
+        },
+        {
+          "action": [
+            "CREATE_TABLE"
+          ],
+          "entity": "public.user"
+        }
+      ]
+    },
+    {
+      "component_name": "ms.intern.delivery_service-ms-intern-delivery-service",
+      "description": "springDelivery",
+      "artefact": "pom.xml",
+      "realization": "JAVA_DOCKER_OPEN_SHIFT",
+      "meta_type": "JAVA_APPLICATION",
+      "extra_data": {
+        "container_name": "ms-intern-delivery-service",
+        "group_id": "com.example",
+        "config_svc": "/ms-intern-delivery-service-svc.yml",
+        "links": {
+          "urls": [
+            {
+              "value": "efp8.sm-soft.ru",
+              "property": "GRAYLOG_HOST",
+              "source": "CM"
+            },
+            {
+              "value": "jdbc:postgresql://db1.etp.sm-soft.ru:5432/delivery_bot?ApplicationName=ms-intern-delivery-service",
+              "property": "DELIVERY_BOT_DB_URL",
+              "source": "CM"
+            },
+            {
+              "value": "https://vk.com/market-212019274?section=",
+              "property": "MORE_SUSHI_URL",
+              "source": "CM"
+            },
+            {
+              "value": "https://pizza-cheddar.ru",
+              "property": "PIZZA_CHEDDAR_URL",
+              "source": "CM"
+            }
+          ]
+        },
+        "config_map": "/ms-intern-delivery-service-cm.yml",
+        "artifact_id": "springDelivery",
+        "version": "0.0.1-SNAPSHOT",
+        "config": "/ms-intern-delivery-service.yml"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "repo_name": "ms.intern.delivery_service",
+      "realization": "JAVA_DOCKER_OPEN_SHIFT",
+      "artefact": "pom.xml",
+      "repo_info": "JAVA_APPLICATION",
+      "message": "Prometheus metric config error: dependency 'micrometer-registry-prometheus' not found; Endpoint configuration for actuator not found in file src/main/resources/application.yaml"
+    },
+    {
+      "repo_name": "ms.intern.delivery_service",
+      "realization": null,
+      "artefact": null,
+      "repo_info": null,
+      "message": "Errors array in json must be null"
+    }
+  ]
+}

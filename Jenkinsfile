@@ -49,12 +49,10 @@ pipeline {
         stage('repo scan') {
             steps {
                 script {
-                    def url = "https://efp6.sm-soft.ru:8243/repo/restscanner/2.0/repo/info?branch=develop&defineDataFromExistingDraft=false&name=https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
-                    println("Get info from ${url}")
-
-                    def res = sh(script: "curl -X GET --header 'Content-Type: *' --header 'Accept: */*' --header 'Authorization: 840d2bd9-c0d9-3b92-914d-5a40d67760df' '${url}' -k",
-                            returnStdout: true
-                    )
+                    def requestBody = readFile(file: 'repo.json')
+                    def url = "http://etp-repo-scan-restscanner-etp.apps.okd4.sm-soft.ru/repo/validation?branch=develop&name=$https://gitlab.sm-soft.ru/cloudcom/ms.intern.delivery_service"
+                    def res = sh(script: "curl -X POST --header 'Content-Type: *' --header 'Accept: */*' '${url}' -d ${requestBody}",
+                                returnStdout: true)
                     println(res)
 
 //                     def exists = fileExists 'repo.json'
